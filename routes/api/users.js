@@ -23,9 +23,10 @@ router.post('/register', (req, res) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
+  const email = req.body.email.toLowerCase();
 
   User.findOne({
-    email: req.body.email
+    email
   }).then(user => {
     if (user) {
       errors.email = 'email already exists';
@@ -38,8 +39,9 @@ router.post('/register', (req, res) => {
       });
 
       const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email,
         avatar,
         password: req.body.password
       });
@@ -69,7 +71,7 @@ router.post('/login', (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const email = req.body.email;
+  const email = req.body.email.toLowerCase();
   const password = req.body.password;
 
   // Find user by email
@@ -87,7 +89,8 @@ router.post('/login', (req, res) => {
         const payload = {
           // Create JWT Payload
           id: user.id,
-          name: user.name,
+          firstName: user.firstName,
+          lastName: user.lastName,
           avatar: user.avatar
         };
 
@@ -112,8 +115,10 @@ router.post('/login', (req, res) => {
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.json({
     id: req.user.id,
-    name: req.user.name,
+    firstName: req.user.firstName,
+    lastName: req.body.lastName,
     email: req.user.email
   });
 });
+
 module.exports = router;

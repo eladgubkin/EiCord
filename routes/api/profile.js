@@ -10,12 +10,7 @@ const validateProfileInput = require('../../validation/profile');
 const Profile = require('../../models/Profile');
 
 // Load User Model
-const User = require('../../models/User'); // user
-
-// @route   GET api/profile/test
-// @desc    Tests profile route
-// @access  Public
-router.get('/test', (req, res) => res.json({ msg: 'Profile Works' }));
+const User = require('../../models/User');
 
 // @route   GET api/profile
 // @desc    Get current users profile
@@ -24,7 +19,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
   const errors = {};
 
   Profile.findOne({ user: req.user.id })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['firstName', 'lastName', 'avatar'])
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
@@ -41,7 +36,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 router.get('/all', (req, res) => {
   const errors = {};
   Profile.find()
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['firstName', 'lastName', 'avatar'])
     .then(profiles => {
       if (!profiles) {
         errors.noprofile = 'There are no profiles';
@@ -59,7 +54,7 @@ router.get('/all', (req, res) => {
 router.get('/handle/:handle', (req, res) => {
   const errors = {};
   Profile.findOne({ handle: req.params.handle })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['firstName', 'lastName', 'avatar'])
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
@@ -77,7 +72,7 @@ router.get('/handle/:handle', (req, res) => {
 router.get('/user/:user_id', (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.params.user_id })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['firstName', 'lastName', 'avatar'])
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
@@ -113,7 +108,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   Profile.findOne({ user: req.user.id }).then(profile => {
     if (profile) {
       // Update
-      Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true }).then(profile => res.json(profile));
+      Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true }).then(
+        profile => res.json(profile)
+      );
     } else {
       // Create
 
