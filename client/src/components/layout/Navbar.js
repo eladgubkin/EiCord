@@ -1,35 +1,40 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
+
+import './Navbar.css';
 
 class Navbar extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
+    return <Redirect to="/" />;
   };
 
   render() {
-    const { isAuthenticated } = this.props.auth; //user is here
-
-    const authLinks = (
-      <div>
-        <a onClick={this.onLogoutClick}>Logout</a>
-      </div>
-    );
-
-    const guestLinks = (
-      <div>
-        <Link to="/register">Sign In</Link>
-        <Link to="/login">Login</Link>
-      </div>
-    );
-
     return (
       <div>
-        <h3>Navbar</h3>
-        {isAuthenticated ? authLinks : guestLinks}
+        <div id="Navbar">
+          <nav className="navbar">
+            <div className="icon">
+              <i className="fas fa-user" />
+            </div>
+            <div className="icon">
+              <i className="fas fa-bell" />
+            </div>
+            <div className="icon">
+              <i className="fas fa-home" />
+            </div>
+            <div className="icon">
+              <i className="fas fa-comment" />
+            </div>
+            <div className="icon" onClick={this.onLogoutClick} title="Logout?">
+              <i className="fas fa-cog" />
+            </div>
+          </nav>
+        </div>
       </div>
     );
   }

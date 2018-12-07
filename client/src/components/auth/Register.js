@@ -69,7 +69,7 @@ class Register extends Component {
           </ul>
           <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
             <div id="signup">
-              <h1>Sign Up for Free</h1>
+              <h1>Sign Up For Free</h1>
               <form noValidate onSubmit={this.onSubmit} autoComplete="off">
                 <div className="top-row">
                   <div className="field-wrap">
