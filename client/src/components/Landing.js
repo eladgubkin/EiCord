@@ -4,8 +4,9 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
 // Components
-import Navbar from './layout/Navbar';
-import Contacts from './layout/Contacts';
+import Navbar from './app/Navbar';
+import Contacts from './app/Contacts';
+import Chat from './app/Chat'
 
 import './Landing.css'; // Style
 
@@ -30,8 +31,8 @@ class Landing extends Component {
           <div id="line-top" />
           <Navbar />
           <Contacts />
-          <div id="Chat" />
-          <div id="Lobby" />
+          <Chat />
+          <div id="Lobby"></div>
           <div id="line-bottom" />
         </div>
       </div>
