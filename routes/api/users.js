@@ -9,6 +9,7 @@ const passport = require('passport');
 // Load Input Validation
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
+const validateUserInput = require('../../validation/user');
 
 // Load  User model
 const User = require('../../models/User');
@@ -88,19 +89,21 @@ router.post('/login', (req, res) => {
         // User Matched
         const payload = {
           // Create JWT Payload
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          avatar: user.avatar
+          id: user.id
         };
 
         // Sign Token
-        jwt.sign(payload, keys.secretOrKey, { expiresIn: '12h' }, (err, token) => {
-          res.json({
-            success: true,
-            token: 'Bearer ' + token
-          });
-        });
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          { expiresIn: '12h' },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: 'Bearer ' + token
+            });
+          }
+        );
       } else {
         errors.password = 'Password incorrect';
         return res.status(400).json(errors);
@@ -112,13 +115,53 @@ router.post('/login', (req, res) => {
 // @route   GET api/users/current
 // @desc    Return current user
 // @access  Private
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.json({
-    id: req.user.id,
-    firstName: req.user.firstName,
-    lastName: req.body.lastName,
-    email: req.user.email
-  });
-});
+router.get(
+  '/current',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email,
+      avatar: req.user.avatar,
+      tagname: req.user.tagname,
+      location: req.user.location,
+      bio: req.user.bio,
+      birthdate: req.user.birthdate,
+      createdAt: req.user.createdAt
+    });
+  }
+);
+
+// @route   POST api/users/update
+// @desc    Edit user
+// @access  Private
+router.post(
+  '/update',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateUserInput(req.body);
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    // Get fields
+    const Fields = {};
+
+    if (req.body.firstName) Fields.firstName = req.body.firstName;
+    if (req.body.lastName) Fields.lastName = req.body.lastName;
+    if (req.body.tagname) Fields.tagname = req.body.tagname;
+    if (req.body.location) Fields.location = req.body.location;
+    if (req.body.birthdate) Fields.birthdate = req.body.birthdate;
+    if (req.body.bio) Fields.bio = req.body.bio;
+
+    User.findOneAndUpdate({ _id: req.body.id }, { $set: Fields }, { new: true })
+      .then(user => res.json(user))
+      .catch(err => console.log(err));
+  }
+);
 
 module.exports = router;

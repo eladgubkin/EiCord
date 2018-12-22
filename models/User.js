@@ -23,7 +23,19 @@ const UserSchema = new Schema({
   avatar: {
     type: String
   },
-  date: {
+  tagname: {
+    type: String
+  },
+  location: {
+    type: String
+  },
+  bio: {
+    type: String
+  },
+  birthdate: {
+    type: String
+  },
+  createdAt: {
     type: Date,
     default: Date.now
   }
