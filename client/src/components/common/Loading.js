@@ -10,7 +10,7 @@ function Loading() {
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
-        height: '94vh',
+        height: '100vh',
         background: '#202225',
         margin: 0,
         border: 0

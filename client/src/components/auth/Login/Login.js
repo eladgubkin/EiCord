@@ -5,7 +5,6 @@ import { loginUser } from '../../../actions/authActions';
 import { Link } from 'react-router-dom';
 import { Animated } from 'react-animated-css';
 import TextFieldGroup from '../../common/TextFieldGroup';
-
 import './Login.css'; // Style
 
 class Login extends Component {
@@ -55,33 +54,25 @@ class Login extends Component {
 
   render() {
     const { errors } = this.state;
-
     return (
-      <div id="Login">
-        <div className="form">
-          <ul className="tab-group">
-            <li className="tab">
-              <Link to="/register">Sign Up</Link>
-            </li>
-            <li className="tab active">
-              <Link to="/login">Log In</Link>
-            </li>
-          </ul>
-
-          <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-            <div id="login">
-              <h1>Welcome Back!</h1>
-              <form noValidate onSubmit={this.onSubmit} autoComplete="off">
+      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+        <div id="Login">
+          <div className="login">
+            <div className="brand">
+              <h1>EiCord</h1>
+            </div>
+            <div className="title">Welcome back!</div>
+            <div className="title-desc">We're so excited to see you again!</div>
+            <div className="form">
+              <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  label="Email Address"
+                  label="Email"
                   type="email"
                   name="email"
                   onChange={this.onChange}
                   value={this.state.email}
                   error={errors.email}
-                  required="required"
                 />
-
                 <TextFieldGroup
                   label="Password"
                   type="password"
@@ -89,18 +80,23 @@ class Login extends Component {
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
-                  required="required"
                 />
-                <p className="forgot">
-                  <Link to="/">Forgot Password?</Link>
-                </p>
+                <div className="forgot">Forgot your password?</div>
 
-                <button className="button button-block">Log In</button>
+                <button type="submit" className="btn">
+                  Login
+                </button>
+                <div className="account">
+                  Need an account?{' '}
+                  <Link to="/register" className="register">
+                    Register
+                  </Link>
+                </div>
               </form>
             </div>
-          </Animated>
+          </div>
         </div>
-      </div>
+      </Animated>
     );
   }
 }

@@ -1,4 +1,4 @@
-import user1 from '../../assets/images/users/1.jpg';
+import user1 from '../../../assets/images/users/1.jpg';
 
 const messages = [
   {

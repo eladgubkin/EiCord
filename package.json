@@ -1,7 +1,7 @@
 {
-  "name": "socialmedia",
+  "name": "eicord",
   "version": "1.0.0",
-  "description": "Social network",
+  "description": "Chat application to chat with your friends!",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
@@ -20,6 +20,7 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.14",
+    "mongoose-friends": "^0.2.5",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "validator": "^10.9.0"

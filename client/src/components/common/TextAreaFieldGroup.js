@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextFieldGroup = ({
+const TextAreaFieldGroup = ({
   name,
   placeholder,
   value,
@@ -11,7 +11,8 @@ const TextFieldGroup = ({
   onChange,
   disabled,
   info,
-  icon
+  rows,
+  cols
 }) => {
   return (
     <div className="field-wrap">
@@ -24,13 +25,10 @@ const TextFieldGroup = ({
           <span className="label">{label}</span>
         )}
       </label>
-      {icon ? (
-        <span className="input-icon">
-          <span className={icon} />
-        </span>
-      ) : null}
-      <input
-        className="TextFieldGroup"
+      <textarea
+        rows={rows}
+        cols={cols}
+        className="TextAreaFieldGroup"
         type={type}
         name={name}
         onChange={onChange}
@@ -44,7 +42,7 @@ const TextFieldGroup = ({
   );
 };
 
-TextFieldGroup.propTypes = {
+TextAreaFieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
@@ -53,11 +51,13 @@ TextFieldGroup.propTypes = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.string,
-  required: PropTypes.string
+  required: PropTypes.string,
+  rows: PropTypes.string,
+  cols: PropTypes.string
 };
 
-TextFieldGroup.defaultProps = {
+TextAreaFieldGroup.defaultProps = {
   type: 'text'
 };
 
-export default TextFieldGroup;
+export default TextAreaFieldGroup;

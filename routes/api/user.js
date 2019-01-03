@@ -14,7 +14,7 @@ const validateUserInput = require('../../validation/user');
 // Load  User model
 const User = require('../../models/User');
 
-// @route   POST api/users/register
+// @route   POST api/user/register
 // @desc    Register user
 // @access  Public
 router.post('/register', (req, res) => {
@@ -30,7 +30,7 @@ router.post('/register', (req, res) => {
     email
   }).then(user => {
     if (user) {
-      errors.email = 'email already exists';
+      errors.email = 'Email is already registered';
       return res.status(400).json(errors);
     } else {
       const avatar = gravatar.url(req.body.email, {
@@ -61,7 +61,7 @@ router.post('/register', (req, res) => {
   });
 });
 
-// @route   POST api/users/login
+// @route   POST api/user/login
 // @desc    Login user: Returning JWT Token
 // @access  Public
 router.post('/login', (req, res) => {
@@ -112,7 +112,7 @@ router.post('/login', (req, res) => {
   });
 });
 
-// @route   GET api/users/current
+// @route   GET api/user/current
 // @desc    Return current user
 // @access  Private
 router.get(
@@ -129,12 +129,13 @@ router.get(
       location: req.user.location,
       bio: req.user.bio,
       birthdate: req.user.birthdate,
+      friends: req.user.friends,
       createdAt: req.user.createdAt
     });
   }
 );
 
-// @route   POST api/users/update
+// @route   POST api/user/update
 // @desc    Edit user
 // @access  Private
 router.post(
@@ -148,19 +149,37 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    // Get fields
     const Fields = {};
 
     if (req.body.firstName) Fields.firstName = req.body.firstName;
     if (req.body.lastName) Fields.lastName = req.body.lastName;
     if (req.body.tagname) Fields.tagname = req.body.tagname;
-    if (req.body.location) Fields.location = req.body.location;
-    if (req.body.birthdate) Fields.birthdate = req.body.birthdate;
-    if (req.body.bio) Fields.bio = req.body.bio;
+    // if (req.body.location) Fields.location = req.body.location;
+    // if (req.body.birthdate) Fields.birthdate = req.body.birthdate;
+    // if (req.body.bio) Fields.bio = req.body.bio;
+    Fields.location = req.body.location;
+    Fields.birthdate = req.body.birthdate;
+    Fields.bio = req.body.bio;
 
     User.findOneAndUpdate({ _id: req.body.id }, { $set: Fields }, { new: true })
       .then(user => res.json(user))
       .catch(err => console.log(err));
+  }
+);
+
+// @route   POST api/user/friends
+// @desc    Add Friend to friends list
+// @access  Private
+router.post(
+  '/friends/add',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    // Find Friend
+    User.findOne({ _id: req.body.friendId }).then(user => {
+      if (!user) {
+        return res.status(404).json(errors);
+      }
+    });
   }
 );
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'reactstrap';
-import user1 from '../../assets/images/users/6.jpg';
+import user1 from '../../../assets/images/users/6.jpg';
 import ReactDOM from 'react-dom';
 import Message from './Message.js';
 // import PerfectScrollbar from 'react-perfect-scrollbar';

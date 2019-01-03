@@ -1,6 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const FriendsSchema = new Schema({
+  requested: {
+    type: Array
+  },
+  pending: {
+    type: Array
+  },
+  accepted: {
+    type: Array
+  }
+});
+
 // Create Schema
 const UserSchema = new Schema({
   firstName: {
@@ -35,6 +47,7 @@ const UserSchema = new Schema({
   birthdate: {
     type: String
   },
+  friends: { FriendsSchema },
   createdAt: {
     type: Date,
     default: Date.now

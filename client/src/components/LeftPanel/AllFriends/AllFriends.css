@@ -1,0 +1,50 @@
+#AllFriends {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#AllFriends .friend-row {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  grid-template-areas: 'profile-img info';
+  border-bottom: 1px solid #000;
+  cursor: pointer;
+}
+
+#AllFriends .friend-row:hover {
+  background: #050609;
+}
+
+#AllFriends .friend-row .profile-img {
+  grid-area: profile-img;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#AllFriends .friend-row .profile-img img {
+  border-radius: 50%;
+  width: 48px;
+}
+
+#AllFriends .friend-row .info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+}
+
+#AllFriends .friend-row .info .full-name {
+  color: #c6c6d4;
+  overflow: hidden;
+  outline: 0;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 400px;
+}
+
+#AllFriends .friend-row .info .time {
+  color: #72767d;
+}

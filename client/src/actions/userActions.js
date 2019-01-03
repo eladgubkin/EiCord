@@ -12,7 +12,7 @@ import {
 export const getCurrentUser = () => dispatch => {
   dispatch(setUserLoading());
   return axios
-    .get('/api/users/current')
+    .get('/api/user/current')
     .then(res =>
       dispatch({
         type: GET_USER,
@@ -30,7 +30,7 @@ export const getCurrentUser = () => dispatch => {
 // Update User
 export const updateUser = userData => dispatch => {
   return axios
-    .post('/api/users/update', userData)
+    .post('/api/user/update', userData)
     .then(res => {
       dispatch({
         type: UPDATE_USER,

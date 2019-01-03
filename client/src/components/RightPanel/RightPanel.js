@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentUser } from '../../actions/userActions';
 import Loading from '../common/Loading';
-import EditProfile from './EditProfile';
-import ViewProfile from './ViewProfile';
+import EditProfile from './EditProfile/EditProfile';
+import ViewProfile from './ViewProfile/ViewProfile';
+import Menu from './Menu/Menu';
+// import { Animated } from 'react-animated-css';
 
 import './RightPanel.css';
 
 class RightPanel extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       showEditProfile: false
     };
@@ -37,7 +38,16 @@ class RightPanel extends Component {
       if (showEditProfile) {
         return <EditProfile switchToViewProfile={this.onClick} />;
       } else {
-        return <ViewProfile switchToEditProfile={this.onClick} />;
+        return (
+          <div id="RightPanel">
+            <div className="ViewProfile">
+              <ViewProfile switchToEditProfile={this.onClick} />
+            </div>
+            <div className="Menu">
+              <Menu switchToEditProfile={this.onClick} />
+            </div>
+          </div>
+        );
       }
     }
   }

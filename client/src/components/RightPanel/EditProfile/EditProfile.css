@@ -1,40 +1,36 @@
-/* Login */
-
-#Login {
+#EditProfile {
+  background: #202225;
+  width: 100%;
   height: 100vh;
-  width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
-#Login .brand {
-  padding-top: 15px;
-  position: fixed;
-  top: 0;
+#EditProfile .profile-img {
+  border-radius: 50%;
+  width: 128px;
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
-#Login .login {
-  height: 492px;
-  width: 480px;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #36393f;
-}
-
-#Login .form {
-  width: 85%;
-}
-
-#Login .field-wrap:first-child {
+#EditProfile .field-wrap {
   margin-bottom: 20px;
 }
 
-#Login .TextFieldGroup {
+#EditProfile .editprofile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#EditProfile .form {
+  width: 85%;
+}
+
+#EditProfile .TextFieldGroup {
   background-color: rgba(0, 0, 0, 0.1);
   border-color: rgba(0, 0, 0, 0.3);
   color: #f6f6f7;
@@ -53,29 +49,49 @@
   outline: none;
 }
 
-#Login .TextFieldGroup:focus {
+#EditProfile .TextAreaFieldGroup {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.3);
+  color: #f6f6f7;
+  height: 150px;
+  padding: 10px;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 16px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  resize: none;
+}
+
+#EditProfile .side-by-side {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+#EditProfile .TextFieldGroup:focus,
+#EditProfile .TextAreaFieldGroup:focus {
   box-shadow: 0 0 5px #7289da;
   border: 1px solid #7289da;
 }
 
-#Login .title {
+#EditProfile .title {
   font-size: 26px;
   line-height: 32px;
   color: #e9e9ea;
   margin-bottom: 8px;
   font-weight: 300;
   outline: 0;
-}
-
-#Login .title-desc {
-  color: #72767d;
-  font-size: 18px;
-  line-height: 22px;
-  font-weight: 400;
   margin-bottom: 30px;
 }
 
-#Login .label {
+#EditProfile .label {
   color: #b9bbbe;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -88,7 +104,7 @@
   font-size: 12px;
 }
 
-#Login .error {
+#EditProfile .error {
   color: #f04747;
   font-style: italic;
   text-transform: none;
@@ -98,57 +114,18 @@
   letter-spacing: 0.5px;
 }
 
-#Login .err-color {
+#EditProfile .err-color {
   color: #f04747;
 }
 
-#Login .forgot {
-  color: #7289da;
+#EditProfile .button {
   cursor: pointer;
-  width: fit-content;
-  margin-bottom: 20px;
-  font-weight: 400;
-}
-
-#Login .forgot:hover {
-  text-decoration-line: underline;
-}
-
-#Login .btn {
+  outline: 0;
+  border: 0;
   background-color: #7289da;
   color: #fff;
   font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 15px;
   width: 100%;
   height: 44px;
-}
-
-#Login .btn:hover {
-  opacity: 0.8;
-}
-
-#Login .account {
-  color: #72767d;
-  font-size: 14px;
-  line-height: 16px;
-}
-
-#Login .register {
-  color: #7289da;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 400;
-}
-
-#Login .register:hover {
-  text-decoration-line: underline;
-}
-
-@media (max-width: 485px) {
-  #Login .login {
-    height: 100%;
-    width: 100%;
-    border-radius: 0;
-  }
+  border-radius: 3px;
 }

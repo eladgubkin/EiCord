@@ -15,7 +15,6 @@ class Register extends Component {
       lastName: '',
       email: '',
       password: '',
-      password2: '',
       errors: {}
     };
   }
@@ -47,8 +46,7 @@ class Register extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
+      password: this.state.password
     };
 
     this.props.registerUser(newUser, this.props.history);
@@ -58,46 +56,40 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <div id="Register">
-        <div className="form">
-          <ul className="tab-group">
-            <li className="tab active">
-              <Link to="/register">Sign Up</Link>
-            </li>
-            <li className="tab">
-              <Link to="/login">Log In</Link>
-            </li>
-          </ul>
-          <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-            <div id="signup">
-              <h1>Sign Up For Free</h1>
-              <form noValidate onSubmit={this.onSubmit} autoComplete="off">
-                <div className="top-row">
+      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+        <div id="Register">
+          <div className="register">
+            <div className="brand">
+              <h1>EiCord</h1>
+            </div>
+            <div className="title">Create an account</div>
+            <div className="form">
+              <form noValidate onSubmit={this.onSubmit}>
+                <div className="side-by-side">
                   <TextFieldGroup
                     label="First Name"
+                    type="firstName"
                     name="firstName"
                     onChange={this.onChange}
                     value={this.state.firstName}
                     error={errors.firstName}
-                    required="required"
                   />
                   <TextFieldGroup
                     label="Last Name"
+                    type="lastName"
                     name="lastName"
                     onChange={this.onChange}
                     value={this.state.lastName}
                     error={errors.lastName}
-                    required="required"
                   />
                 </div>
                 <TextFieldGroup
-                  label="Email Address"
+                  label="Email"
                   type="email"
                   name="email"
                   onChange={this.onChange}
                   value={this.state.email}
                   error={errors.email}
-                  required="required"
                 />
                 <TextFieldGroup
                   label="Password"
@@ -106,23 +98,26 @@ class Register extends Component {
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
-                  required="required"
                 />
-                <TextFieldGroup
-                  label="Confirm Password"
-                  type="password"
-                  name="password2"
-                  onChange={this.onChange}
-                  value={this.state.password2}
-                  error={errors.password2}
-                  required="required"
-                />
-                <button className="button button-block">Get Started</button>
+
+                <button type="submit" className="btn">
+                  Continue
+                </button>
+                <div className="account">
+                  <Link to="/login" className="login">
+                    Already have an account?
+                  </Link>
+                </div>
+                {/* <div className="terms">
+                  By registering, you agree to EiCord's{' '}
+                  <span className="link">Terms of Service</span> and{' '}
+                  <span className="link">Privacy Policy</span>.
+                </div> */}
               </form>
             </div>
-          </Animated>
+          </div>
         </div>
-      </div>
+      </Animated>
     );
   }
 }

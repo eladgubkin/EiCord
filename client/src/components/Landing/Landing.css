@@ -1,4 +1,4 @@
-#Landing #isAuth #line-top {
+/* #Landing #isAuth #line-top {
   position: fixed;
   top: 0;
   width: 100%;
@@ -30,4 +30,25 @@
   #Landing #line-bottom {
     display: none;
   }
+} */
+
+#Landing #isAuthenticated {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  grid-template-areas: 'LeftPanel MainArea RightPanel';
+}
+
+#Landing .LeftPanel {
+  grid-area: LeftPanel;
+  height: 100vh;
+}
+
+#Landing .MainArea {
+  grid-area: MainArea;
+  height: 100vh;
+}
+
+#Landing .RightPanel {
+  grid-area: RightPanel;
+  height: 100vh;
 }

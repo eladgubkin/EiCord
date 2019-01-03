@@ -1,0 +1,111 @@
+#Menu {
+  width: 100%;
+  height: 30vh;
+  background: #202225;
+  margin: 0;
+  border: 0;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 50% 1fr 1fr;
+  grid-template-rows: repeat(5, 17%);
+  grid-gap: 4%;
+  grid-template-areas:
+    'editprofile editprofile editprofile'
+    'home mic headphones'
+    'home pin camera'
+    'home notifications settings'
+    'logout logout logout';
+  padding: 8%;
+}
+
+#Menu > div {
+  background: tomato;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  background-color: #7289da;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 300;
+  width: 100%;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#Menu > div:hover {
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+#Menu .tip .tooltiptext {
+  visibility: hidden;
+  width: fit-content;
+  background-color: #000;
+  color: #dcddde;
+  text-align: center;
+  border-radius: 7px;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+#Menu .tip .tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #000 transparent transparent transparent;
+}
+
+#Menu .tip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#Menu .editprofile {
+  grid-area: editprofile;
+}
+
+#Menu .logout {
+  grid-area: logout;
+}
+
+#Menu .settings {
+  grid-area: settings;
+}
+
+#Menu .mic {
+  grid-area: mic;
+}
+
+#Menu .headphones {
+  grid-area: headphones;
+}
+
+#Menu .camera {
+  grid-area: camera;
+}
+
+#Menu .notifications {
+  grid-area: notifications;
+}
+
+#Menu .pin {
+  grid-area: pin;
+}
+
+#Menu .home {
+  grid-area: home;
+}
