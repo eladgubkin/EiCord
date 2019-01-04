@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './AllFriends.css';
 import img from '../../../assets/images/users/1.jpg';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 class AllFriends extends Component {
   constructor(props) {
@@ -41,7 +42,124 @@ class AllFriends extends Component {
           desc: 'Happy Birthday!',
           time: '9:10 PM',
           tagname: 'johndoe',
-          status: 'noDisturb'
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
+        },
+        {
+          avatar: img,
+          firstName: 'John',
+          lastName: 'Doe',
+          desc: 'Happy Birthday!',
+          time: '9:10 PM',
+          tagname: 'johndoe',
+          status: 'offline'
         }
       ]
     };
@@ -51,26 +169,28 @@ class AllFriends extends Component {
     const { friends } = this.state;
     return (
       <div id="AllFriends">
-        {friends.map((friend, index) => {
-          return (
-            <div
-              className="friend-row"
-              key={index}
-              onClick={this.props.showFriendProfile}
-            >
-              <span className="profile-img">
-                <img src={friend.avatar} alt="Avatar" />
-              </span>
-              <div className="info">
-                <span className="full-name">
-                  {`${friend.firstName} ${friend.lastName}`}
+        <PerfectScrollbar>
+          {friends.map((friend, index) => {
+            return (
+              <div
+                className="friend-row"
+                key={index}
+                onClick={this.props.showFriendProfile}
+              >
+                <span className="profile-img">
+                  <img src={friend.avatar} alt="Avatar" />
                 </span>
-                <span className="desc">{friend.desc}</span>
-                <span className="time">{friend.time}</span>
+                <div className="info">
+                  <span className="full-name">
+                    {`${friend.firstName} ${friend.lastName}`}
+                  </span>
+                  <span className="desc">{friend.desc}</span>
+                  <span className="time">{friend.time}</span>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </PerfectScrollbar>
       </div>
     );
   }

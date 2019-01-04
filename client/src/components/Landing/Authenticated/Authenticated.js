@@ -7,25 +7,6 @@ import '../Landing.css';
 class Authenticated extends Component {
   render() {
     return (
-      // <div>
-      //   <div id="Landing">
-      //     <div id="isAuth">
-      //       <div className="main-area">
-      //         <Row style={{ background: '#263238' }}>
-      //           <Col md="3" style={{ paddingRight: '0' }}>
-      //             <LeftPanel />
-      //           </Col>
-      //           <Col md="6" className="nopadding">
-      //             <Chat />
-      //           </Col>
-      //           <Col md="3" className="nopadding">
-      //             <RightPanel />
-      //           </Col>
-      //         </Row>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
       <div id="Landing">
         <div id="isAuthenticated">
           <div className="LeftPanel">

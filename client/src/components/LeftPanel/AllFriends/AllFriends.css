@@ -1,7 +1,8 @@
 #AllFriends {
+  width: 100%;
+  height: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 #AllFriends .friend-row {
@@ -10,7 +11,7 @@
   display: grid;
   grid-template-columns: 20% 1fr;
   grid-template-areas: 'profile-img info';
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #2d333b;
   cursor: pointer;
 }
 

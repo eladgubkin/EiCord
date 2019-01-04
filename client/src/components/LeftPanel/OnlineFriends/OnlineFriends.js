@@ -37,6 +37,13 @@ class OnlineFriends extends Component {
           desc: 'Good morning, this is me',
           time: '6:30 AM',
           tagname: 'johndoe'
+        },
+        {
+          avatar: img2,
+          firstName: 'Layla',
+          lastName: 'Annie',
+          desc: 'Good morning, this is me',
+          time: '6:30 AM'
         }
       ]
     };

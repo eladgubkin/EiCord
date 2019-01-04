@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../../actions/authActions';
-import { Animated } from 'react-animated-css';
 import TextFieldGroup from '../../common/TextFieldGroup';
 import './Register.css'; // Style
 
@@ -56,68 +55,66 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
-        <div id="Register">
-          <div className="register">
-            <div className="brand">
-              <h1>EiCord</h1>
-            </div>
-            <div className="title">Create an account</div>
-            <div className="form">
-              <form noValidate onSubmit={this.onSubmit}>
-                <div className="side-by-side">
-                  <TextFieldGroup
-                    label="First Name"
-                    type="firstName"
-                    name="firstName"
-                    onChange={this.onChange}
-                    value={this.state.firstName}
-                    error={errors.firstName}
-                  />
-                  <TextFieldGroup
-                    label="Last Name"
-                    type="lastName"
-                    name="lastName"
-                    onChange={this.onChange}
-                    value={this.state.lastName}
-                    error={errors.lastName}
-                  />
-                </div>
+      <div id="Register">
+        <div className="register">
+          <div className="brand">
+            <h1>EiCord</h1>
+          </div>
+          <div className="title">Create an account</div>
+          <div className="form">
+            <form noValidate onSubmit={this.onSubmit}>
+              <div className="side-by-side">
                 <TextFieldGroup
-                  label="Email"
-                  type="email"
-                  name="email"
+                  label="First Name"
+                  type="firstName"
+                  name="firstName"
                   onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
+                  value={this.state.firstName}
+                  error={errors.firstName}
                 />
                 <TextFieldGroup
-                  label="Password"
-                  type="password"
-                  name="password"
+                  label="Last Name"
+                  type="lastName"
+                  name="lastName"
                   onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
+                  value={this.state.lastName}
+                  error={errors.lastName}
                 />
+              </div>
+              <TextFieldGroup
+                label="Email"
+                type="email"
+                name="email"
+                onChange={this.onChange}
+                value={this.state.email}
+                error={errors.email}
+              />
+              <TextFieldGroup
+                label="Password"
+                type="password"
+                name="password"
+                onChange={this.onChange}
+                value={this.state.password}
+                error={errors.password}
+              />
 
-                <button type="submit" className="btn">
-                  Continue
-                </button>
-                <div className="account">
-                  <Link to="/login" className="login">
-                    Already have an account?
-                  </Link>
-                </div>
-                {/* <div className="terms">
+              <button type="submit" className="btn">
+                Continue
+              </button>
+              <div className="account">
+                <Link to="/login" className="login">
+                  Already have an account?
+                </Link>
+              </div>
+              {/* <div className="terms">
                   By registering, you agree to EiCord's{' '}
                   <span className="link">Terms of Service</span> and{' '}
                   <span className="link">Privacy Policy</span>.
                 </div> */}
-              </form>
-            </div>
+            </form>
           </div>
         </div>
-      </Animated>
+      </div>
     );
   }
 }

@@ -37,7 +37,7 @@ class Menu extends Component {
         </div>
         <div className="camera tip">
           <i className="icon-camrecorder" />
-          <span className="tooltiptext">Disable Video Camera</span>
+          <span className="tooltiptext">Disable Video Recorder</span>
         </div>
         <div className="settings tip">
           <i className="icon-settings" />

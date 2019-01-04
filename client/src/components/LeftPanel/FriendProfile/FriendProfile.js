@@ -18,7 +18,7 @@ class FriendProfile extends Component {
           className="btn mt-3"
           size="lg"
         >
-          Back to friends
+          Go Back
         </Button>
       </div>
     );

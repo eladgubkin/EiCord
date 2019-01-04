@@ -5,11 +5,12 @@
   margin: 0;
   border: 0;
 }
+
 #LeftPanel .top-nav {
+  height: 5%;
   text-align: center;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 25px;
   padding: 10px;
   background: #36393f;
   font-size: 16px;
@@ -18,8 +19,27 @@
   border-bottom: 1px solid #050609;
 }
 
+#LeftPanel .top-nav > div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #LeftPanel .top-nav > div:hover {
   background: #2f3136;
-  cursor: pointer;
   border-radius: 6px;
+  cursor: pointer;
+}
+
+#LeftPanel .top-nav .active {
+  background: #ffffff;
+  color: #36393f;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+#LeftPanel .top-nav .add-friend {
+  font-size: 18px;
 }

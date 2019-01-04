@@ -7,7 +7,6 @@ import FriendProfile from './FriendProfile/FriendProfile';
 import AllFriends from './AllFriends/AllFriends';
 import OnlineFriends from './OnlineFriends/OnlineFriends';
 import PendingFriends from './PendingFriends/PendingFriends';
-import BlockedFriends from './BlockedFriends/BlockedFriends';
 import AddFriend from './AddFriend/AddFriend';
 import './LeftPanel.css';
 
@@ -17,10 +16,9 @@ class LeftPanel extends Component {
     this.state = {
       showAddFriend: false,
       showFriendProfile: false,
-      showAllFriends: true,
-      showOnlineFriends: false,
-      showPendingFriends: false,
-      showBlockedFriends: false
+      showAllFriends: false,
+      showOnlineFriends: true,
+      showPendingFriends: false
     };
   }
   showAddFriend = () => {
@@ -29,8 +27,7 @@ class LeftPanel extends Component {
       showFriendProfile: false,
       showAllFriends: false,
       showOnlineFriends: false,
-      showPendingFriends: false,
-      showBlockedFriends: false
+      showPendingFriends: false
     });
   };
 
@@ -40,8 +37,7 @@ class LeftPanel extends Component {
       showAddFriend: false,
       showAllFriends: false,
       showOnlineFriends: false,
-      showPendingFriends: false,
-      showBlockedFriends: false
+      showPendingFriends: false
     });
   };
 
@@ -51,8 +47,7 @@ class LeftPanel extends Component {
       showAddFriend: false,
       showAllFriends: true,
       showOnlineFriends: false,
-      showPendingFriends: false,
-      showBlockedFriends: false
+      showPendingFriends: false
     });
   };
 
@@ -62,8 +57,7 @@ class LeftPanel extends Component {
       showAddFriend: false,
       showAllFriends: false,
       showOnlineFriends: true,
-      showPendingFriends: false,
-      showBlockedFriends: false
+      showPendingFriends: false
     });
   };
 
@@ -73,19 +67,7 @@ class LeftPanel extends Component {
       showAddFriend: false,
       showAllFriends: false,
       showOnlineFriends: false,
-      showPendingFriends: true,
-      showBlockedFriends: false
-    });
-  };
-
-  showBlockedFriends = () => {
-    this.setState({
-      showFriendProfile: false,
-      showAddFriend: false,
-      showAllFriends: false,
-      showOnlineFriends: false,
-      showPendingFriends: false,
-      showBlockedFriends: true
+      showPendingFriends: true
     });
   };
 
@@ -94,29 +76,38 @@ class LeftPanel extends Component {
       showAllFriends,
       showOnlineFriends,
       showPendingFriends,
-      showBlockedFriends
+      showAddFriend
     } = this.state;
 
-    if (this.state.showAddFriend) {
-      return <AddFriend showAllFriends={this.showAllFriends} />;
-    }
     if (this.state.showFriendProfile) {
       return <FriendProfile showAllFriends={this.showAllFriends} />;
     } else {
       return (
         <div id="LeftPanel">
           <div className="top-nav">
-            <div className="all" onClick={this.showAllFriends}>
+            <div
+              className={`all ${showAllFriends ? 'active' : ''}`}
+              onClick={this.showAllFriends}
+            >
               All
             </div>
-            <div className="online" onClick={this.showOnlineFriends}>
+            <div
+              className={`online ${showOnlineFriends ? 'active' : ''}`}
+              onClick={this.showOnlineFriends}
+            >
               Online
             </div>
-            <div className="pending" onClick={this.showPendingFriends}>
+            <div
+              className={`pending ${showPendingFriends ? 'active' : ''}`}
+              onClick={this.showPendingFriends}
+            >
               Pending
             </div>
-            <div className="blocked" onClick={this.showBlockedFriends}>
-              Blocked
+            <div
+              className={`add-friend ${showAddFriend ? 'active' : ''}`}
+              onClick={this.showAddFriend}
+            >
+              <i className="icon-user-follow" />
             </div>
           </div>
           {showAllFriends ? (
@@ -126,13 +117,8 @@ class LeftPanel extends Component {
             <OnlineFriends showFriendProfile={this.showFriendProfile} />
           ) : null}
           {showPendingFriends ? <PendingFriends /> : null}
-          {showBlockedFriends ? <BlockedFriends /> : null}
+          {showAddFriend ? <AddFriend /> : null}
         </div>
-
-        // <Friends
-        //   showAddFriend={this.showAddFriend}
-        //   showFriendProfile={this.showFriendProfile}
-        // />
       );
     }
   }

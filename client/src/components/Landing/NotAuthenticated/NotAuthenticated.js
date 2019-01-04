@@ -5,7 +5,7 @@ import '../Landing.css';
 class NotAuthenticated extends Component {
   render() {
     return (
-      <div>
+      <div id="NotAuthenticated">
         <h1>NotAuthenticated</h1>
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>

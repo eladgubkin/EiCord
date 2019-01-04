@@ -44,7 +44,7 @@ class ViewProfile extends Component {
               className="add-location"
               onClick={this.props.switchToEditProfile}
             >
-              <i className="icon-location-pin" /> Add location
+              <i className="icon-location-pin" /> Add Location
             </span>
           )}
         </div>

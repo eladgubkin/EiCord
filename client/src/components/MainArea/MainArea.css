@@ -2,8 +2,8 @@
   height: 100vh;
   width: 100%;
   background: #202225;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
+  border-right: 1px solid #2d333b;
+  border-left: 1px solid #2d333b;
   display: flex;
   flex-direction: column;
   justify-content: center;
