@@ -1,97 +1,42 @@
-import React from 'react';
-import { Card } from 'reactstrap';
-import user1 from '../../../assets/images/users/6.jpg';
-import ReactDOM from 'react-dom';
-import Message from './Message.js';
-// import PerfectScrollbar from 'react-perfect-scrollbar';
-import * as data from './chat-data.jsx';
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+// import io from 'socket.io-client';
+import Info from './Info/Info';
+import ChatWindow from './ChatWindow/ChatWindow';
+import Input from './Input/Input';
 import './Chat.css';
 
-class Chat extends React.Component {
+class Chat extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      other: data.messages,
-      chats: data.chatlisting
-    };
+    this.state = {};
   }
 
-  submitMessage = (e, chatindex) => {
-    e.preventDefault();
-    switch (chatindex) {
-      case 'chat':
-        this.setState(
-          {
-            chats: this.state.chats.concat([
-              {
-                username: 'Kevin Hsu',
-                content: (
-                  <span>{ReactDOM.findDOMNode(this.refs.msg).value}</span>
-                ),
-                img: user1
-              }
-            ])
-          },
-          () => {
-            ReactDOM.findDOMNode(this.refs.msg).value = '';
-          }
-        );
-        break;
-
-      default:
-    }
-  };
-
   render() {
-    const username = 'Kevin Hsu';
-    const { chats } = this.state;
+    // const socket = io.connect('http://localhost:5000');
 
     return (
-      <Card id="Chat">
-        <div className="d-flex align-items-center p-3 border-bottom">
-          <div className="mr-2">
-            <img
-              src={this.state.other[0].image}
-              alt="user"
-              className="rounded-circle"
-              width="40"
-            />
-          </div>
-          <div>
-            <h5 className="message-title">{this.state.other[0].title}</h5>
-          </div>
+      <div id="Chat">
+        <div className="info">
+          <Info />
         </div>
-
-        <ul className="chat-list p-4" ref="chats" style={{ height: '100%' }}>
-          {chats.map((chat, index) => (
-            <Message key={index} chat={chat} user={username} />
-          ))}
-        </ul>
-
-        <form
-          id="chat"
-          onSubmit={e => this.submitMessage(e, e.target.id)}
-          className="card-body border-top"
-        >
-          <div className="d-flex">
-            <input
-              placeholder="Type a message"
-              ref="msg"
-              className="form-control border-0"
-              type="text"
-            />
-            <button
-              className="btn btn-circle btn-lg btn-info float-right text-white"
-              type="submit"
-            >
-              <i className="fas fa-paper-plane" />
-            </button>
-          </div>
-        </form>
-      </Card>
+        <div className="chat-window">
+          <ChatWindow />
+        </div>
+        <div className="input">
+          <Input />
+        </div>
+      </div>
     );
   }
 }
 
-export default Chat;
+Chat.propTypes = {};
+
+const mapStateToProps = state => ({});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Chat);

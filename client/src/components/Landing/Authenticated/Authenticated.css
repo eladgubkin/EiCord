@@ -1,0 +1,15 @@
+#Authenticated {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-areas: 'sidebar MainArea ';
+}
+
+#Authenticated .Sidebar {
+  grid-area: sidebar;
+  height: 100vh;
+}
+
+#Authenticated .MainArea {
+  grid-area: MainArea;
+  height: 100vh;
+}

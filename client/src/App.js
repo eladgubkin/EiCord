@@ -15,7 +15,6 @@ import Register from './components/auth/Register/Register';
 import Login from './components/auth/Login/Login';
 
 // CSS
-import './assets/scss/style.css';
 import './App.css';
 
 // Check for token

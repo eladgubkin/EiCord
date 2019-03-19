@@ -1,0 +1,159 @@
+#Friends {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  display: grid;
+  grid-template-rows: 1fr 60px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'friends'
+    'top';
+}
+
+#Friends .top {
+  grid-area: top;
+  font-size: 20px;
+  color: #b9bbbe;
+  font-weight: 300;
+  outline: 0;
+  /* border-bottom: 1px solid #2d333b; */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 'nav';
+}
+
+#Friends .top .nav {
+  grid-area: nav;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+#Friends .top .nav .active {
+  color: #0078d4;
+}
+
+#Friends .top .nav div > span {
+  cursor: pointer;
+}
+
+#Friends .friends {
+  grid-area: friends;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+#Friends .friends .user {
+  font-size: 17px;
+  color: #b9bbbe;
+  font-weight: 300;
+  outline: 0;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 60px 1fr 110px;
+  grid-template-areas: 'avatar info icons';
+  border-bottom: 1px solid #2d333b;
+  cursor: pointer;
+}
+
+#Friends .friends .user:hover {
+  background: #275e75;
+}
+
+#Friends .friends .user .avatar {
+  grid-area: avatar;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#Friends .friends .user .avatar img {
+  border-radius: 50%;
+  width: 45px;
+}
+
+#Friends .friends .user .info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #b9bbbe;
+  letter-spacing: 0.5px;
+  -webkit-box-flex: 1;
+  flex: 1;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+#Friends .friends .user .info .full-name {
+  font-size: 18px;
+}
+
+#Friends .friends .user .info .email {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* #Friends .friends .user .icons {
+  grid-area: icons;
+  text-align: center;
+  font-size: 0;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+#Friends .friends .user:hover .icons {
+  font-size: 20px;
+} */
+
+#Friends .landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+#Friends .landing img {
+  position: relative;
+  overflow: visible;
+  background-color: transparent;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 130px;
+  width: 130px;
+  align-self: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-style: none;
+  display: flex;
+  text-align: center;
+}
+
+#Friends .landing .title {
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: default;
+  color: #b9bbbe;
+}
+
+#Friends .landing .desc {
+  text-align: center;
+  cursor: default;
+  width: 60%;
+  font-size: 12px;
+  opacity: 0.6;
+  color: #b9bbbe;
+}

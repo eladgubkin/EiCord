@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import '../Landing.css';
+import './NotAuthenticated.css';
 
 class NotAuthenticated extends Component {
   render() {

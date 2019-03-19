@@ -1,13 +1,25 @@
 import {
   GET_USER,
+  SEARCH_USERS,
+  CLEAR_SEARCH_USERS,
   USER_LOADING,
   CLEAR_CURRENT_USER,
-  UPDATE_USER
+  UPDATE_USER,
+  GET_FRIENDS_INFO,
+  CLEAR_FRIENDS_INFO,
+  GET_REQUESTERS_INFO,
+  CLEAR_REQUESTERS_INFO,
+  GET_ACCEPTERS_INFO,
+  CLEAR_ACCEPTERS_INFO
 } from '../actions/types';
 
 const initialState = {
+  friends: null,
+  requesters: null,
+  accepters: null,
+  users: null,
   user: null,
-  loading: false
+  loading: true
 };
 
 export default function(state = initialState, action) {
@@ -35,6 +47,60 @@ export default function(state = initialState, action) {
       return {
         ...state,
         user: null
+      };
+
+    case SEARCH_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        loading: false
+      };
+
+    case CLEAR_SEARCH_USERS:
+      return {
+        ...state,
+        users: null
+      };
+
+    case GET_FRIENDS_INFO:
+      return {
+        ...state,
+        friends: action.payload,
+        loading: false
+      };
+
+    case CLEAR_FRIENDS_INFO:
+      return {
+        ...state,
+        friends: null,
+        loading: false
+      };
+
+    case GET_REQUESTERS_INFO:
+      return {
+        ...state,
+        requesters: action.payload,
+        loading: false
+      };
+
+    case CLEAR_REQUESTERS_INFO:
+      return {
+        ...state,
+        requesters: null,
+        loading: false
+      };
+    case GET_ACCEPTERS_INFO:
+      return {
+        ...state,
+        accepters: action.payload,
+        loading: false
+      };
+
+    case CLEAR_ACCEPTERS_INFO:
+      return {
+        ...state,
+        accepters: null,
+        loading: false
       };
 
     default:

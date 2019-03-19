@@ -1,0 +1,175 @@
+#Notifications {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+}
+
+#Notifications .requesters .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+#Notifications .requesters .user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: #b9bbbe;
+  font-weight: 300;
+  outline: 0;
+}
+
+#Notifications .requesters {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+#Notifications .requesters .user {
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 60px 1fr 90px;
+  grid-template-areas: 'avatar info confirm';
+  /* border-bottom: 1px solid #2d333b; */
+}
+
+#Notifications .requesters .user .avatar {
+  grid-area: avatar;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#Notifications .requesters .user .avatar img {
+  border-radius: 50%;
+  width: 45px;
+}
+
+#Notifications .requesters .user .info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #b9bbbe;
+  letter-spacing: 0.5px;
+  -webkit-box-flex: 1;
+  cursor: default;
+  flex: 1;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+#Notifications .requesters .user .info .full-name {
+  font-size: 18px;
+}
+
+#Notifications .requesters .user .info .email {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+#Notifications .requesters .user .confirm {
+  grid-area: confirm;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas: 'yes no';
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+#Notifications .requesters .user .confirm .yes {
+  grid-area: yes;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#Notifications .requesters .user .confirm .no {
+  grid-area: no;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#Notifications .requesters .user .confirm .yes button,
+#Notifications .requesters .user .confirm .no button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #bdbdbf;
+  outline: 0;
+  cursor: pointer;
+  color: #bdbdbf;
+  border-radius: 50%;
+  text-decoration: none;
+  background: #23262c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: ease 0.2s all;
+}
+
+#Notifications .requesters .user .confirm .yes button > i,
+#Notifications .requesters .user .confirm .no button > i {
+  font-size: 16px;
+}
+
+#Notifications .requesters .user .confirm .yes button > i {
+  transform: rotate(-10deg);
+}
+
+#Notifications .requesters .user .confirm .yes button:hover {
+  color: #23773c;
+  border-color: #23773c;
+}
+
+#Notifications .requesters .user .confirm .no button:hover {
+  color: #783529;
+  border-color: #783529;
+}
+
+#Notifications .no-notifications {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#Notifications .no-notifications img {
+  position: relative;
+  overflow: visible;
+  background-color: transparent;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 130px;
+  width: 130px;
+  align-self: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-style: none;
+  display: flex;
+}
+
+#Notifications .no-notifications .no-new {
+  font-size: 18px;
+  margin-top: 20px;
+  color: #b9bbbe;
+  cursor: default;
+}
+
+#Notifications .no-notifications .desc {
+  font-size: 12px;
+  cursor: default;
+  opacity: 0.6;
+  color: #b9bbbe;
+}

@@ -7,6 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #ddd;
 }
 
 #Register .brand {
@@ -37,7 +38,6 @@
 #Register .TextFieldGroup {
   background-color: rgba(0, 0, 0, 0.1);
   border-color: rgba(0, 0, 0, 0.3);
-  color: #f6f6f7;
   height: 40px;
   padding: 10px;
   border-radius: 3px;
@@ -51,6 +51,10 @@
   -ms-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   outline: none;
+  color: #b9bbbe;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  line-height: 16px;
 }
 
 #Register .side-by-side {
@@ -96,17 +100,17 @@
 }
 
 #Register .error {
-  color: #f04747;
+  color: #ac4646;
   font-style: italic;
   text-transform: none;
   font-size: 12px;
   font-family: inherit;
-  font-weight: 400;
+  font-weight: bold;
   letter-spacing: 0.5px;
 }
 
 #Register .err-color {
-  color: #f04747;
+  color: #ac4646;
 }
 
 #Register .forgot {
@@ -129,6 +133,10 @@
   margin-bottom: 15px;
   width: 100%;
   height: 44px;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 #Register .btn:hover {
@@ -147,6 +155,7 @@
   cursor: pointer;
   width: fit-content;
   font-weight: 400;
+  text-decoration: none;
 }
 
 #Register .terms {
@@ -163,10 +172,10 @@
 }
 
 #Register .login:hover {
-  text-decoration-line: underline;
+  text-decoration: underline;
 }
 
-@media (max-width: 685px) {
+@media (max-width: 550px) {
   #Register .register {
     height: 100%;
     width: 100%;

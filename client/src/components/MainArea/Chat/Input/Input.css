@@ -1,0 +1,45 @@
+#Input {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 55px;
+  grid-template-areas: 'field-wrap plus';
+}
+
+#Input .field-wrap {
+  grid-area: field-wrap;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+#Input .field-wrap .TextFieldGroup {
+  width: 100%;
+  height: 60%;
+  border-radius: 12px;
+  background: #2b2c33;
+  border: 0;
+  outline: 0;
+  padding-left: 30px;
+  margin-left: 10px;
+  color: #b9bbbe;
+  font-size: 1rem;
+}
+
+#Input .plus {
+  grid-area: plus;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #b9bbbe;
+}
+
+#Input .plus > i {
+  background: #2b333b;
+  color: #275e75;
+  padding: 10px;
+  border-radius: 50%;
+}

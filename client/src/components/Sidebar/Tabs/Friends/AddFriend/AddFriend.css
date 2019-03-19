@@ -1,0 +1,221 @@
+#AddFriend {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  grid-template-rows: 60px 60px 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'title title'
+    'search-area search-area'
+    'matched-users matched-users';
+}
+
+#AddFriend .title {
+  grid-area: title;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: #b9bbbe;
+  font-weight: 300;
+  outline: 0;
+}
+
+#AddFriend .search-area {
+  grid-area: search-area;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#AddFriend .matched-users .user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: #b9bbbe;
+  font-weight: 300;
+  outline: 0;
+}
+
+#AddFriend .matched-users .no-match {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b9bbbe;
+  font-weight: 300;
+  outline: 0;
+  width: 100%;
+}
+
+#AddFriend .bar {
+  background: #434953;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: center;
+  width: 95%;
+  border-radius: 7px;
+  height: 60%;
+}
+
+#AddFriend .bar .TextFieldGroup {
+  border: 1px solid #434953;
+  font-size: 18px;
+  opacity: 0.7;
+  width: 95%;
+  background: #434953;
+  outline: 0;
+  box-sizing: border-box;
+  color: #b9bbbe;
+  letter-spacing: 0.5px;
+  -webkit-box-flex: 1;
+  flex: 1;
+  font-weight: 600;
+  line-height: 16px;
+  border-radius: 7px;
+}
+
+#AddFriend .bar .search {
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.7;
+  background: none;
+  border: none;
+  outline: none;
+  color: #b9bbbe;
+}
+
+#AddFriend .bar .search > i {
+  cursor: pointer;
+}
+
+#AddFriend .icons {
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.7;
+  grid-area: icons;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  align-items: center;
+}
+
+#AddFriend .matched-users {
+  grid-area: matched-users;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+#AddFriend .matched-users .user {
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  grid-template-areas: 'avatar info icons';
+  border-bottom: 1px solid #2d333b;
+}
+
+#AddFriend .matched-users .user .avatar {
+  grid-area: avatar;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#AddFriend .matched-users .user .avatar img {
+  border-radius: 50%;
+  width: 45px;
+}
+
+#AddFriend .matched-users .user .info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #b9bbbe;
+  letter-spacing: 0.5px;
+  -webkit-box-flex: 1;
+  cursor: default;
+  flex: 1;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+#AddFriend .matched-users .user .info .full-name {
+  font-size: 18px;
+}
+
+#AddFriend .matched-users .user .info .email {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+#AddFriend .matched-users .user .icons {
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.7;
+  grid-area: icons;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  align-items: center;
+}
+
+#AddFriend .matched-users .user:hover .icons .fa-user-plus {
+  font-size: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#AddFriend .matched-users .user:hover .icons .fa-user-plus {
+  font-size: 18px;
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+#AddFriend .matched-users .landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+#AddFriend .matched-users .landing img {
+  position: relative;
+  overflow: visible;
+  background-color: transparent;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 130px;
+  width: 130px;
+  align-self: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-style: none;
+  display: flex;
+  text-align: center;
+}
+
+#AddFriend .matched-users .landing .title {
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: default;
+  color: #b9bbbe;
+}
+
+#AddFriend .matched-users .landing .desc {
+  text-align: center;
+  cursor: default;
+  width: 60%;
+  font-size: 12px;
+  opacity: 0.6;
+  color: #b9bbbe;
+}

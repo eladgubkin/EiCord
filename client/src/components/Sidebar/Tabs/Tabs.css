@@ -1,0 +1,57 @@
+#Tabs {
+  background: #23262c;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+}
+
+#Tabs .menu {
+  background: #23262c;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  /* border-top: 1px solid #303a46; */
+  border-bottom: 1px solid #303a46;
+  text-align: center;
+  color: #b9bbbe;
+}
+
+#Tabs .menu div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#Tabs .menu div i {
+  font-size: 24px;
+  margin-bottom: 3px;
+}
+
+#Tabs .menu div span {
+  font-size: 11px;
+  cursor: default;
+}
+
+#Tabs .menu .active {
+  color: #0078d4;
+}
+
+/* #Tabs .menu span > i {
+  cursor: pointer;
+  transition: all 0.3s ease;
+} */
+
+/* #Tabs .menu span > i:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+} */
+
+/* #Tabs .menu .notifications img {
+  width: 36px;
+  color: #b9bbbe;
+} */

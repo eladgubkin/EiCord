@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-import LeftPanel from '../../LeftPanel/LeftPanel';
-import RightPanel from '../../RightPanel/RightPanel';
+import Sidebar from '../../Sidebar/Sidebar';
 import MainArea from '../../MainArea/MainArea';
-import '../Landing.css';
+import './Authenticated.css';
 
 class Authenticated extends Component {
   render() {
     return (
-      <div id="Landing">
-        <div id="isAuthenticated">
-          <div className="LeftPanel">
-            <LeftPanel />
-          </div>
-          <div className="MainArea">
-            <MainArea />
-          </div>
-          <div className="RightPanel">
-            <RightPanel />
-          </div>
+      <div id="Authenticated">
+        <div className="Sidebar">
+          <Sidebar />
+        </div>
+        <div className="MainArea">
+          <MainArea />
         </div>
       </div>
     );

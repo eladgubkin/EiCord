@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
+const Validator = require('validator');
 
 // Load Input Validation
 const validateRegisterInput = require('../../validation/register');
@@ -24,6 +25,7 @@ router.post('/register', (req, res) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
+  // const tag = Math.floor(1000 + Math.random() * 9000);
   const email = req.body.email.toLowerCase();
 
   User.findOne({
@@ -34,9 +36,9 @@ router.post('/register', (req, res) => {
       return res.status(400).json(errors);
     } else {
       const avatar = gravatar.url(req.body.email, {
-        s: '200', //Size,
-        r: 'pg', //Rating
-        d: 'mm' //Default
+        s: '200', // Size,
+        r: 'pg', // Rating
+        d: 'mm' // Default
       });
 
       const newUser = new User({
@@ -93,17 +95,12 @@ router.post('/login', (req, res) => {
         };
 
         // Sign Token
-        jwt.sign(
-          payload,
-          keys.secretOrKey,
-          { expiresIn: '12h' },
-          (err, token) => {
-            res.json({
-              success: true,
-              token: 'Bearer ' + token
-            });
-          }
-        );
+        jwt.sign(payload, keys.secretOrKey, { expiresIn: '12h' }, (err, token) => {
+          res.json({
+            success: true,
+            token: 'Bearer ' + token
+          });
+        });
       } else {
         errors.password = 'Password incorrect';
         return res.status(400).json(errors);
@@ -125,11 +122,6 @@ router.get(
       lastName: req.user.lastName,
       email: req.user.email,
       avatar: req.user.avatar,
-      tagname: req.user.tagname,
-      location: req.user.location,
-      bio: req.user.bio,
-      birthdate: req.user.birthdate,
-      friends: req.user.friends,
       createdAt: req.user.createdAt
     });
   }
@@ -153,13 +145,6 @@ router.post(
 
     if (req.body.firstName) Fields.firstName = req.body.firstName;
     if (req.body.lastName) Fields.lastName = req.body.lastName;
-    if (req.body.tagname) Fields.tagname = req.body.tagname;
-    // if (req.body.location) Fields.location = req.body.location;
-    // if (req.body.birthdate) Fields.birthdate = req.body.birthdate;
-    // if (req.body.bio) Fields.bio = req.body.bio;
-    Fields.location = req.body.location;
-    Fields.birthdate = req.body.birthdate;
-    Fields.bio = req.body.bio;
 
     User.findOneAndUpdate({ _id: req.body.id }, { $set: Fields }, { new: true })
       .then(user => res.json(user))
@@ -167,19 +152,81 @@ router.post(
   }
 );
 
-// @route   POST api/user/friends
-// @desc    Add Friend to friends list
+// @route   POST api/user/search
+// @desc    Search for user - returns matching users
 // @access  Private
 router.post(
-  '/friends/add',
+  '/search',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    // Find Friend
-    User.findOne({ _id: req.body.friendId }).then(user => {
-      if (!user) {
-        return res.status(404).json(errors);
-      }
-    });
+    const { searchInput } = req.body;
+
+    if (Validator.isEmail(searchInput)) {
+      User.find({ email: searchInput })
+        .then(result => {
+          const users = [];
+
+          result.forEach(user => {
+            users.push({
+              id: user._id,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              avatar: user.avatar,
+              email: user.email
+            });
+          });
+
+          res.json(users);
+        })
+        .catch(err => console.log(err));
+    } else if (searchInput) {
+      User.find({ $text: { $search: searchInput } })
+        .then(result => {
+          const users = [];
+
+          result.forEach(user => {
+            users.push({
+              id: user._id,
+              firstName: user.firstName,
+              lastName: user.lastName,
+              avatar: user.avatar,
+              email: user.email
+            });
+          });
+
+          res.json(users);
+        })
+        .catch(err => console.log(err));
+    }
+  }
+);
+
+// @route   GET api/user/info
+// @desc    Get all information about requested users
+// @access  Private
+router.post(
+  '/info',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { friendsID, requestersID, acceptersID } = req.body;
+
+    if (friendsID) {
+      User.find({ _id: { $in: friendsID } })
+        .then(docs => res.json(docs))
+        .catch(err => console.log(err));
+    }
+
+    if (requestersID) {
+      User.find({ _id: { $in: requestersID } })
+        .then(docs => res.json(docs))
+        .catch(err => console.log(err));
+    }
+
+    if (acceptersID) {
+      User.find({ _id: { $in: acceptersID } })
+        .then(docs => res.json(docs))
+        .catch(err => console.log(err));
+    }
   }
 );
 

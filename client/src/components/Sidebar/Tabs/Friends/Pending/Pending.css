@@ -1,0 +1,128 @@
+#Pending {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+}
+
+#Pending .accepters .user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: #b9bbbe;
+  font-weight: 300;
+  outline: 0;
+}
+
+#Pending .accepters {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+#Pending .accepters .user {
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 60px 1fr 150px;
+  grid-template-areas: 'avatar info status';
+  border-bottom: 1px solid #2d333b;
+}
+
+#Pending .accepters .user .avatar {
+  grid-area: avatar;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#Pending .accepters .user .avatar img {
+  border-radius: 50%;
+  width: 45px;
+}
+
+#Pending .accepters .user .info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #b9bbbe;
+  letter-spacing: 0.5px;
+  -webkit-box-flex: 1;
+  cursor: default;
+  flex: 1;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+#Pending .accepters .user .info .full-name {
+  font-size: 18px;
+}
+
+#Pending .accepters .user .info .email {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+#Pending .accepters .user .status {
+  grid-area: status;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  opacity: 0.7;
+  color: #b9bbbe;
+  letter-spacing: 0.5px;
+  -webkit-box-flex: 1;
+  cursor: default;
+  flex: 1;
+  font-weight: 600;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+#Pending .landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+#Pending .landing img {
+  position: relative;
+  overflow: visible;
+  background-color: transparent;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 130px;
+  width: 130px;
+  align-self: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-style: none;
+  display: flex;
+  text-align: center;
+}
+
+#Pending .landing .title {
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: default;
+  color: #b9bbbe;
+}
+
+#Pending .landing .desc {
+  text-align: center;
+  cursor: default;
+  width: 60%;
+  font-size: 12px;
+  opacity: 0.6;
+  color: #b9bbbe;
+}

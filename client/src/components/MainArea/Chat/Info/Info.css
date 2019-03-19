@@ -1,0 +1,61 @@
+#Info {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #2b2c33;
+  display: grid;
+  grid-template-columns: 60px 1fr 120px;
+  grid-template-areas: 'avatar info icons';
+  color: #b9bbbe;
+}
+
+#Info .avatar {
+  grid-area: avatar;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#Info .info .avatar img {
+  border-radius: 7px;
+  width: 45px;
+}
+
+#Info .info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #b9bbbe;
+  letter-spacing: 0.5px;
+  -webkit-box-flex: 1;
+  cursor: default;
+  flex: 1;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+#Info .info .full-name {
+  font-size: 18px;
+}
+
+#Info .info .status {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+#Info .icons {
+  grid-area: icons;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 24px;
+  color: #b9bbbe;
+}
+
+#Info .icons > i {
+  cursor: pointer;
+  background: #2b333b;
+  color: #275e75;
+  padding: 10px;
+  border-radius: 50%;
+}

@@ -38,6 +38,7 @@ const TextFieldGroup = ({
         placeholder={placeholder}
         disabled={disabled}
         autoComplete="off"
+        spellCheck="false"
       />
       <div className="info">{info}</div>
     </div>
