@@ -61,47 +61,55 @@ class Notifications extends Component {
             <PerfectScrollbar>
               <div className="requesters">
                 <span className="title">Incoming Friend Requests</span>
-                {requesters.map((requester, i) => {
-                  return (
-                    <div className="user" key={i}>
-                      <span className="avatar">
-                        <img src={requester.avatar} alt="Avatar" />
-                      </span>
-                      <div className="info">
-                        <span className="full-name">
-                          {`${requester.firstName} ${requester.lastName}`}
+                {requesters
+                  .sort((a, b) =>
+                    a.firstName !== b.firstName
+                      ? a.firstName < b.firstName
+                        ? -1
+                        : 1
+                      : 0
+                  )
+                  .map((requester, i) => {
+                    return (
+                      <div className="user" key={i}>
+                        <span className="avatar">
+                          <img src={requester.avatar} alt="Avatar" />
                         </span>
-                        <span className="email">{requester.email}</span>
+                        <div className="info">
+                          <span className="full-name">
+                            {`${requester.firstName} ${requester.lastName}`}
+                          </span>
+                          <span className="email">{requester.email}</span>
+                        </div>
+                        <div className="confirm">
+                          <span className="yes">
+                            <button
+                              type="button"
+                              onClick={() =>
+                                this.props
+                                  .confirmFriendRequest(requester._id)
+                                  .then(() => this.getAllNotifications())
+                              }
+                            >
+                              <i className="fas fa-check" />
+                            </button>
+                          </span>
+                          <span className="no">
+                            <button
+                              type="button"
+                              onClick={() =>
+                                this.props
+                                  .DeclineFriendRequest(requester._id)
+                                  .then(() => this.getAllNotifications())
+                              }
+                            >
+                              <i className="fas fa-times" />
+                            </button>
+                          </span>
+                        </div>
                       </div>
-                      <div className="confirm">
-                        <span className="yes">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              this.props
-                                .confirmFriendRequest(requester._id)
-                                .then(() => this.getAllNotifications())
-                            }
-                          >
-                            <i className="fas fa-check" />
-                          </button>
-                        </span>
-                        <span className="no">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              this.props
-                                .DeclineFriendRequest(requester._id)
-                                .then(() => this.getAllNotifications())
-                            }
-                          >
-                            <i className="fas fa-times" />
-                          </button>
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
               </div>
             </PerfectScrollbar>
           ) : (

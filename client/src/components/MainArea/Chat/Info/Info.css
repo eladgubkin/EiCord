@@ -15,8 +15,8 @@
   justify-content: center;
 }
 
-#Info .info .avatar img {
-  border-radius: 7px;
+#Info .avatar img {
+  border-radius: 50%;
   width: 45px;
 }
 
@@ -38,7 +38,7 @@
   font-size: 18px;
 }
 
-#Info .info .status {
+#Info .info .email {
   font-size: 11px;
   opacity: 0.7;
 }
@@ -55,7 +55,7 @@
 #Info .icons > i {
   cursor: pointer;
   background: #2b333b;
-  color: #275e75;
+  color: #0078d4;
   padding: 10px;
   border-radius: 50%;
 }

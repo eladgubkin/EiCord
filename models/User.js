@@ -25,6 +25,10 @@ const UserSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  socketId: {
+    type: String,
+    default: null
   }
 });
 

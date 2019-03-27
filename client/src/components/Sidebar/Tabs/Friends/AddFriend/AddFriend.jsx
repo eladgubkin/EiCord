@@ -80,31 +80,39 @@ class AddFriend extends Component {
         <PerfectScrollbar>
           <div className="matched-users">
             {!isEmpty(users) ? (
-              users.map((user, i) => {
-                return (
-                  <div className="user" key={i}>
-                    <span className="avatar">
-                      <img src={user.avatar} alt="Avatar" />
-                    </span>
-                    <div className="info">
-                      <span className="full-name">
-                        {`${user.firstName} ${user.lastName}`}
+              users
+                .sort((a, b) =>
+                  a.firstName !== b.firstName
+                    ? a.firstName < b.firstName
+                      ? -1
+                      : 1
+                    : 0
+                )
+                .map((user, i) => {
+                  return (
+                    <div className="user" key={i}>
+                      <span className="avatar">
+                        <img src={user.avatar} alt="Avatar" />
                       </span>
-                      <span className="email">{user.email}</span>
+                      <div className="info">
+                        <span className="full-name">
+                          {`${user.firstName} ${user.lastName}`}
+                        </span>
+                        <span className="email">{user.email}</span>
+                      </div>
+                      <div className="icons">
+                        {success ? (
+                          <i className="fas fa-check" />
+                        ) : (
+                          <i
+                            className="fas fa-user-plus"
+                            onClick={() => this.props.sendFriendRequest(user.id)}
+                          />
+                        )}
+                      </div>
                     </div>
-                    <div className="icons">
-                      {success ? (
-                        <i className="fas fa-check" />
-                      ) : (
-                        <i
-                          className="fas fa-user-plus"
-                          onClick={() => this.props.sendFriendRequest(user.id)}
-                        />
-                      )}
-                    </div>
-                  </div>
-                );
-              })
+                  );
+                })
             ) : users === null ? (
               <div className="landing">
                 <img src={img} alt="" />

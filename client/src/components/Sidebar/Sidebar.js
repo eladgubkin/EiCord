@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getCurrentUser } from '../../actions/userActions';
 import TopDetails from './TopDetails/TopDetails';
 import Tabs from './Tabs/Tabs';
+import Loading from '../common/Loading';
 import './Sidebar.css';
 
 class Sidebar extends Component {
@@ -20,7 +21,7 @@ class Sidebar extends Component {
     const { user, loading } = this.props.user;
 
     if (user === null || loading) {
-      return <h1>Loading</h1>;
+      return <Loading background="#23262c" />;
     } else {
       return (
         <div id="Sidebar">

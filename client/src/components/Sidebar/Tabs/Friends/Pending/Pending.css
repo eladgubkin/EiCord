@@ -30,7 +30,7 @@
   display: grid;
   grid-template-columns: 60px 1fr 150px;
   grid-template-areas: 'avatar info status';
-  border-bottom: 1px solid #2d333b;
+  /* border-bottom: 1px solid #2d333b; */
 }
 
 #Pending .accepters .user .avatar {

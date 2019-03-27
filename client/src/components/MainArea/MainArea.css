@@ -2,9 +2,61 @@
   height: 100vh;
   width: 100%;
   background: #202225;
-  border-left: 1px solid #2b2c33;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#MainArea .landing {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+
+#MainArea .landing .welcome {
+  grid-area: welcome;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#MainArea .landing .welcome span {
+  font-size: 26px;
+  line-height: 32px;
+  color: #e9e9ea;
+  font-weight: 300;
+  outline: 0;
+  margin-bottom: 27px;
+}
+
+#MainArea .landing .welcome img {
+  border-radius: 50%;
+  width: 120px;
+}
+
+#MainArea .landing .desc {
+  grid-area: desc;
+  color: #72767d;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  word-wrap: break-word;
+  width: 70%;
+  margin-top: 27px;
+}
+
+#MainArea .landing .signed-in {
+  position: fixed;
+  bottom: 10px;
+}
+
+#MainArea .landing .signed-in span {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  bottom: 0;
 }

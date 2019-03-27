@@ -54,30 +54,38 @@ class Pending extends Component {
           {!isEmpty(accepters) ? (
             <PerfectScrollbar>
               <div className="accepters">
-                {accepters.map((accepter, i) => {
-                  return (
-                    <div className="user" key={i}>
-                      <span className="avatar">
-                        <img src={accepter.avatar} alt="Avatar" />
-                      </span>
-                      <div className="info">
-                        <span className="full-name">
-                          {`${accepter.firstName} ${accepter.lastName}`}
+                {accepters
+                  .sort((a, b) =>
+                    a.firstName !== b.firstName
+                      ? a.firstName < b.firstName
+                        ? -1
+                        : 1
+                      : 0
+                  )
+                  .map((accepter, i) => {
+                    return (
+                      <div className="user" key={i}>
+                        <span className="avatar">
+                          <img src={accepter.avatar} alt="Avatar" />
                         </span>
-                        <span className="email">{accepter.email}</span>
+                        <div className="info">
+                          <span className="full-name">
+                            {`${accepter.firstName} ${accepter.lastName}`}
+                          </span>
+                          <span className="email">{accepter.email}</span>
+                        </div>
+                        <div
+                          className="status"
+                          onMouseEnter={e => (e.target.innerHTML = 'Cancel')}
+                          onMouseLeave={e =>
+                            (e.target.innerHTML = 'Friend Request Sent')
+                          }
+                        >
+                          Friend Request Sent
+                        </div>
                       </div>
-                      <div
-                        className="status"
-                        onMouseEnter={e => (e.target.innerHTML = 'Cancel')}
-                        onMouseLeave={e =>
-                          (e.target.innerHTML = 'Friend Request Sent')
-                        }
-                      >
-                        Friend Request Sent
-                      </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
               </div>
             </PerfectScrollbar>
           ) : (

@@ -230,4 +230,18 @@ router.post(
   }
 );
 
+// @route   POST api/user/by-id
+// @desc    Get user by Id
+// @access  Private
+router.post(
+  '/by-id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { id } = req.body;
+    User.findById(id)
+      .then(docs => res.json(docs))
+      .catch(err => console.log(err));
+  }
+);
+
 module.exports = router;

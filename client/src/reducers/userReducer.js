@@ -10,7 +10,9 @@ import {
   GET_REQUESTERS_INFO,
   CLEAR_REQUESTERS_INFO,
   GET_ACCEPTERS_INFO,
-  CLEAR_ACCEPTERS_INFO
+  CLEAR_ACCEPTERS_INFO,
+  GET_USER_BY_ID,
+  CLEAR_USER_BY_ID
 } from '../actions/types';
 
 const initialState = {
@@ -19,6 +21,7 @@ const initialState = {
   accepters: null,
   users: null,
   user: null,
+  userById: null,
   loading: true
 };
 
@@ -103,6 +106,17 @@ export default function(state = initialState, action) {
         loading: false
       };
 
+    case GET_USER_BY_ID:
+      return {
+        ...state,
+        userById: action.payload
+      };
+
+    case CLEAR_USER_BY_ID:
+      return {
+        ...state,
+        userById: null
+      };
     default:
       return state;
   }

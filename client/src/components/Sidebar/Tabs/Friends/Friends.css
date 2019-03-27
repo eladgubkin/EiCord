@@ -59,8 +59,8 @@
   display: grid;
   grid-template-columns: 60px 1fr 110px;
   grid-template-areas: 'avatar info icons';
-  border-bottom: 1px solid #2d333b;
-  cursor: pointer;
+  /* border-bottom: 1px solid #2d333b; */
+  cursor: default;
 }
 
 #Friends .friends .user:hover {

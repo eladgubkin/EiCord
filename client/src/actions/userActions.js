@@ -13,7 +13,9 @@ import {
   GET_REQUESTERS_INFO,
   CLEAR_REQUESTERS_INFO,
   GET_ACCEPTERS_INFO,
-  CLEAR_ACCEPTERS_INFO
+  CLEAR_ACCEPTERS_INFO,
+  GET_USER_BY_ID,
+  CLEAR_USER_BY_ID
 } from './types';
 
 // Get current user
@@ -142,5 +144,21 @@ export const clearRequestersInfo = () => {
 export const clearAcceptersInfo = () => {
   return {
     type: CLEAR_ACCEPTERS_INFO
+  };
+};
+
+// Get user by id
+export const getUserById = id => dispatch => {
+  return axios.post('/api/user/by-id', { id }).then(res => {
+    dispatch({
+      type: GET_USER_BY_ID,
+      payload: res.data
+    });
+  });
+};
+
+export const clearUserById = () => {
+  return {
+    type: CLEAR_USER_BY_ID
   };
 };

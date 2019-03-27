@@ -8,6 +8,7 @@ import {
   clearRequestersInfo,
   clearAcceptersInfo
 } from '../../../../actions/userActions';
+import { chatWithUser } from '../../../../actions/chatActions';
 import Loading from '../../../common/Loading';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import AddFriend from './AddFriend/AddFriend';
@@ -86,7 +87,7 @@ class Friends extends Component {
                 onClick={() => this.changeTab('Friends')}
               >
                 <span>
-                  <i className="fas fa-user-check" />
+                  <i className="fas fa-user-friends" />
                 </span>
               </div>
               <div
@@ -103,26 +104,38 @@ class Friends extends Component {
             !isEmpty(friends) ? (
               <PerfectScrollbar>
                 <div className="friends">
-                  {friends.map((friend, i) => {
-                    return (
-                      <div className="user" key={i}>
-                        <span className="avatar">
-                          <img src={friend.avatar} alt="Avatar" />
-                        </span>
-                        <div className="info">
-                          <span className="full-name">
-                            {`${friend.firstName} ${friend.lastName}`}
+                  {friends
+                    .sort((a, b) =>
+                      a.firstName !== b.firstName
+                        ? a.firstName < b.firstName
+                          ? -1
+                          : 1
+                        : 0
+                    )
+                    .map((friend, i) => {
+                      return (
+                        <div
+                          className="user"
+                          key={i}
+                          onClick={() => this.props.chatWithUser(friend._id)}
+                        >
+                          <span className="avatar">
+                            <img src={friend.avatar} alt="Avatar" />
                           </span>
-                          <span className="email">{friend.email}</span>
-                        </div>
-                        {/* <div className="icons">
+                          <div className="info">
+                            <span className="full-name">
+                              {`${friend.firstName} ${friend.lastName}`}
+                            </span>
+                            <span className="email">{friend.email}</span>
+                          </div>
+                          {/* <div className="icons">
                         <i className="fas fa-phone" />
                         <i className="fas fa-video" />
                         <i className="fas fa-comment" />
                       </div> */}
-                      </div>
-                    );
-                  })}
+                        </div>
+                      );
+                    })}
                 </div>
               </PerfectScrollbar>
             ) : (
@@ -145,6 +158,7 @@ class Friends extends Component {
 }
 
 Friends.propTypes = {
+  chatWithUser: PropTypes.func.isRequired,
   getUsersInfo: PropTypes.func.isRequired,
   clearFriendsInfo: PropTypes.func.isRequired,
   clearRequestersInfo: PropTypes.func.isRequired,
@@ -162,6 +176,7 @@ export default connect(
   mapStateToProps,
   {
     getAllFriendships,
+    chatWithUser,
     getUsersInfo,
     clearFriendsInfo,
     clearRequestersInfo,

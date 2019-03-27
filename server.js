@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const socket = require('socket.io');
 
 const user = require('./routes/api/user');
 const friendships = require('./routes/api/friendships');
@@ -38,4 +37,6 @@ const server = app.listen(port, () => {
 });
 
 // Socket setup
-const io = socket(server);
+const io = (module.exports.io = require('socket.io')(server));
+const SocketManager = require('./SocketManager');
+io.on('connection', SocketManager);

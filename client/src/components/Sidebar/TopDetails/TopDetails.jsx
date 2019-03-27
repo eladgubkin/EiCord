@@ -26,7 +26,7 @@ class TopDetails extends Component {
 
         <div className="icons">
           <span className="dots">
-            <i className="fas fa-sign-out-alt" onClick={this.props.logoutUser} />
+            <i className="fas fa-cog" onClick={this.props.logoutUser} />
           </span>
           {/* <span className="mic">
             <i className="tooltip fas fa-microphone" title="Mute" />

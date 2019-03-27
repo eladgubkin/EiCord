@@ -1,9 +1,13 @@
 #Chat {
   padding: 0;
   margin: 0;
-  background: #23262c;
+  background: #202225;
   height: 100%;
   width: 100%;
   display: grid;
   grid-template-rows: 90px 1fr 90px;
+}
+
+#Chat .chat-window {
+  overflow-y: auto;
 }
