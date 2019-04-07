@@ -12,7 +12,12 @@ class Landing extends Component {
       return <NotAuthenticated isAuthenticated={isAuthenticated} />;
     }
 
-    return <Authenticated isAuthenticated={isAuthenticated} />;
+    return (
+      <Authenticated
+        isAuthenticated={isAuthenticated}
+        id={this.props.auth.user.id}
+      />
+    );
   }
 }
 

@@ -14,30 +14,37 @@
 
 #Friends .top {
   grid-area: top;
-  font-size: 20px;
   color: #b9bbbe;
-  font-weight: 300;
-  outline: 0;
-  /* border-bottom: 1px solid #2d333b; */
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-areas: 'nav';
 }
 
 #Friends .top .nav {
-  grid-area: nav;
   text-align: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
 }
 
-#Friends .top .nav .active {
-  color: #0078d4;
+#Friends .top .nav div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-#Friends .top .nav div > span {
-  cursor: pointer;
+#Friends .top .nav div i {
+  font-size: 24px;
+  margin-bottom: 3px;
+}
+
+#Friends .top .nav div span {
+  font-size: 11px;
+  cursor: default;
+}
+
+#Friends .top .nav .active {
+  color: #0078d4;
 }
 
 #Friends .friends {
@@ -77,6 +84,7 @@
 #Friends .friends .user .avatar img {
   border-radius: 50%;
   width: 45px;
+  box-shadow: 0 8px 6px -6px #000;
 }
 
 #Friends .friends .user .info {

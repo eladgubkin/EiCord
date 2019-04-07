@@ -1,15 +1,30 @@
 #Authenticated {
   display: grid;
   grid-template-columns: 320px 1fr;
-  grid-template-areas: 'sidebar MainArea ';
+  grid-template-areas: 'Sidebar MainArea ';
 }
 
 #Authenticated .Sidebar {
-  grid-area: sidebar;
+  grid-area: Sidebar;
   height: 100vh;
 }
 
 #Authenticated .MainArea {
   grid-area: MainArea;
   height: 100vh;
+}
+
+@media (max-width: 760px) {
+  #Authenticated {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'Sidebar';
+  }
+
+  #Authenticated .MainArea {
+    display: none;
+  }
+
+  /* #Authenticated .Sidebar {
+    display: none;
+  } */
 }

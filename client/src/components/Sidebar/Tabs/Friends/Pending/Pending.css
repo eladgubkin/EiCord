@@ -43,6 +43,7 @@
 #Pending .accepters .user .avatar img {
   border-radius: 50%;
   width: 45px;
+  box-shadow: 0 8px 6px -6px #000;
 }
 
 #Pending .accepters .user .info {

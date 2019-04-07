@@ -29,3 +29,6 @@ export const CLEAR_ACCEPTERS_INFO = 'CLEAR_ACCEPTERS_INFO';
 
 export const GET_FRIEND_ID = 'GET_FRIEND_ID';
 export const CLEAR_FRIEND_ID = 'CLEAR_FRIEND_ID';
+
+export const INIT_SOCKET = 'INIT_SOCKET';
+export const GET_MESSAGES = 'GET_MESSAGES';

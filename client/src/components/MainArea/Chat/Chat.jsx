@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { clearFriendId } from '../../../actions/chatActions';
+import { clearFriendId, initSocket } from '../../../actions/chatActions';
 import { getUserById, clearUserById } from '../../../actions/userActions';
-import io from 'socket.io-client';
 import Info from './Info/Info';
 import ChatWindow from './ChatWindow/ChatWindow';
 import Input from './Input/Input';
@@ -19,19 +18,12 @@ class Chat extends Component {
     };
   }
 
-  initSocket = () => {
-    const socket = io.connect('http://localhost:5000', {
-      query: `userID=${this.props.user.user.id}`
-    });
-    socket.on('connect', () => {
-      console.log(`Connected! Socket Id = ${socket.id}`);
-    });
-
-    this.setState({ socket });
-  };
-
   componentWillMount() {
-    this.initSocket();
+    this.props.initSocket(this.props.user.user.id).then(() => {
+      this.setState({
+        socket: this.props.chat.socket
+      });
+    });
 
     const { friendID } = this.props.chat;
     if (friendID) {
@@ -47,10 +39,12 @@ class Chat extends Component {
   render() {
     const { friendID } = this.props.chat;
     const { userById } = this.props.user;
+    const { socket } = this.state;
 
-    if (friendID === null || userById === null) {
+    if (friendID === null || userById === null || socket === null) {
       return <Loading background="#202225" />;
     }
+
     return (
       <div id="Chat">
         <div className="info">
@@ -72,6 +66,7 @@ class Chat extends Component {
 }
 
 Chat.propTypes = {
+  initSocket: PropTypes.func.isRequired,
   clearFriendId: PropTypes.func.isRequired,
   clearUserById: PropTypes.func.isRequired,
   getUserById: PropTypes.func.isRequired,
@@ -85,5 +80,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getUserById, clearUserById, clearFriendId }
+  { initSocket, getUserById, clearUserById, clearFriendId }
 )(Chat);

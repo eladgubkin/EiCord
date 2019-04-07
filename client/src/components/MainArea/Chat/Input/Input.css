@@ -38,6 +38,7 @@
 }
 
 #Input .plus > i {
+  cursor: pointer;
   background: #2b333b;
   color: #0078d4;
   padding: 10px;

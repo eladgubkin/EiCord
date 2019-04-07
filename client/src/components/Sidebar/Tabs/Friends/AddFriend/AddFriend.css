@@ -129,6 +129,7 @@
 
 #AddFriend .matched-users .user .avatar img {
   border-radius: 50%;
+  box-shadow: 0 8px 6px -6px #000;
   width: 45px;
 }
 

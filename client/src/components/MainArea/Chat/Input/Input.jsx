@@ -39,7 +39,7 @@ class Input extends Component {
           />
         </form>
         <div className="plus">
-          <i className="fas fa-plus" onClick={this.emitMessage} />
+          <i className="far fa-paper-plane" onClick={this.emitMessage} />
         </div>
       </div>
     );

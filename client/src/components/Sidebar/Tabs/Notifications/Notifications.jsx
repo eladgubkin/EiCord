@@ -10,7 +10,7 @@ import { getUsersInfo, clearRequestersInfo } from '../../../../actions/userActio
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import Loading from '../../../common/Loading';
 import isEmpty from '../../../../validation/is-empty';
-import img from '../../../../img/notifications_emptystate_v3.png';
+import img from '../../../../img/alarm.png';
 import './Notifications.css';
 
 class Notifications extends Component {
@@ -73,7 +73,15 @@ class Notifications extends Component {
                     return (
                       <div className="user" key={i}>
                         <span className="avatar">
-                          <img src={requester.avatar} alt="Avatar" />
+                          {/* <img src={requester.avatar} alt="Avatar" /> */}
+                          <img
+                            src={`https://ui-avatars.com/api?name=${
+                              requester.firstName
+                            }+${
+                              requester.lastName
+                            }&background=2b2c33&color=0078d4&size=128&rounded=true&font-size=0.33`}
+                            alt="Avatar"
+                          />
                         </span>
                         <div className="info">
                           <span className="full-name">

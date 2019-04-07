@@ -35,6 +35,7 @@
 #MainArea .landing .welcome img {
   border-radius: 50%;
   width: 120px;
+  box-shadow: 0 8px 6px -6px #000;
 }
 
 #MainArea .landing .desc {

@@ -9,7 +9,7 @@ import {
 import TextFieldGroup from '../../../../common/TextFieldGroup';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import isEmpty from '../../../../../validation/is-empty';
-import img from '../../../../../img/search.png';
+import img from '../../../../../img/search_people.png';
 import './AddFriend.css';
 
 class AddFriend extends Component {
@@ -92,7 +92,13 @@ class AddFriend extends Component {
                   return (
                     <div className="user" key={i}>
                       <span className="avatar">
-                        <img src={user.avatar} alt="Avatar" />
+                        {/* <img src={user.avatar} alt="Avatar" /> */}
+                        <img
+                          src={`https://ui-avatars.com/api?name=${user.firstName}+${
+                            user.lastName
+                          }&background=2b2c33&color=0078d4&size=128&rounded=true&font-size=0.33`}
+                          alt="Avatar"
+                        />
                       </span>
                       <div className="info">
                         <span className="full-name">

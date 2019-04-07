@@ -26,7 +26,13 @@ class MainArea extends Component {
           <div className="landing">
             <div className="welcome">
               <span> Welcome, {user.firstName}</span>
-              <img src={user.avatar} alt="Avatar" />
+              {/* <img src={user.avatar} alt="Avatar" /> */}
+              <img
+                src={`https://ui-avatars.com/api?name=${user.firstName}+${
+                  user.lastName
+                }&background=2b2c33&color=0078d4&size=256&rounded=true&font-size=0.33`}
+                alt="Avatar"
+              />
             </div>
             <div className="desc">
               Search for someone to start chatting with or go to Contacts to see who

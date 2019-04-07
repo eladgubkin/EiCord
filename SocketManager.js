@@ -30,19 +30,12 @@ module.exports = socket => {
 
     newMessage
       .save()
-      .then(() =>
-        Message.find({
-          from: socket.handshake.query['userID'],
-          to: data.friendID
-        }).then(messagesFromMe => {
-          Message.find({
-            from: data.friendID,
-            to: socket.handshake.query['userID']
-          }).then(messagesSentToMe => {
-            socket.emit('ReceiveMessages', { messagesFromMe, messagesSentToMe });
-          });
-        })
-      )
+      .then(() => {
+        socket.emit('newMessage', newMessage);
+        User.findById(data.friendID).then(friend => {
+          io.to(friend.socketId).emit('newMessage', newMessage);
+        });
+      })
       .catch(err => console.log(err));
   });
 
@@ -53,31 +46,9 @@ module.exports = socket => {
           from: data.friendID,
           to: socket.handshake.query['userID']
         }).then(messagesSentToMe => {
-          socket.emit('ReceiveMessages', { messagesFromMe, messagesSentToMe });
+          socket.emit('ReceiveMessages', [...messagesFromMe, ...messagesSentToMe]);
         });
       }
     );
   });
-
-  // const changeStream = Message.watch();
-  // changeStream.on('change', next => {
-  //   console.log(next);
-  //   socket.emit('YouShouldGetMessages');
-  // });
-
-  // const changeStream = Message.watch();
-  // changeStream.on('change', change => {
-  //   console.log('collection changed');
-  //   Message.find({
-  //     from: socket.handshake.query['userID'],
-  //     to: data.friendID
-  //   }).then(messagesFromMe => {
-  //     Message.find({
-  //       from: data.friendID,
-  //       to: socket.handshake.query['userID']
-  //     }).then(messagesSentToMe => {
-  //       socket.emit('ReceiveMessages', { messagesFromMe, messagesSentToMe });
-  //     });
-  //   });
-  // });
 };

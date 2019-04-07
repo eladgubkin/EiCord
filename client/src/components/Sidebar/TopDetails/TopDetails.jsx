@@ -17,7 +17,13 @@ class TopDetails extends Component {
     return (
       <div id="TopDetails">
         <div className="avatar">
-          <img src={user.avatar} alt="Profile Pic" />
+          {/* <img src={user.avatar} alt="Profile Pic" /> */}
+          <img
+            src={`https://ui-avatars.com/api?name=${user.firstName}+${
+              user.lastName
+            }&background=2b2c33&color=0078d4&size=128&rounded=true&font-size=0.33`}
+            alt="Avatar"
+          />
         </div>
         <div className="info">
           <span className="full-name">{`${user.firstName} ${user.lastName}`}</span>

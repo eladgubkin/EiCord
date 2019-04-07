@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Loading from '../../../common/Loading';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { getMessages } from '../../../../actions/chatActions';
 import Moment from 'react-moment';
 import './ChatWindow.css';
 
@@ -9,74 +10,89 @@ class ChatWindow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messagesFromMe: null,
-      messagesSentToMe: null
+      messages: null
     };
   }
 
   componentWillMount() {
-    this.getMessages();
+    const { socket } = this.props;
+    const { friendID } = this.props.chat;
+
+    this.props.getMessages(friendID, socket).then(() => {
+      this.setState({
+        messages: this.props.chat.messages
+      });
+    });
+
+    socket.on('newMessage', message => {
+      this.setState({
+        messages: this.state.messages.concat(message)
+      });
+    });
   }
 
   componentWillUnmount() {
     this.setState({
-      messagesFromMe: null,
-      messagesSentToMe: null
+      messages: null
     });
   }
 
-  getMessages = () => {
-    const { socket } = this.props;
-    const { friendID } = this.props.chat;
-
-    socket.emit('getMessages', { friendID });
-    socket.on('ReceiveMessages', messages => {
-      this.setState({
-        messagesFromMe: messages.messagesFromMe,
-        messagesSentToMe: messages.messagesSentToMe
-      });
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      messages: nextProps.chat.messages
     });
+  }
+
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
   };
 
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
   render() {
-    const { messagesFromMe, messagesSentToMe } = this.state;
+    const { messages } = this.state;
     const { user } = this.props.user;
 
-    // const { socket } = this.props;
-    // socket.on('YouShouldGetMessages', () => this.getMessages());
-
-    if (messagesFromMe === null || messagesSentToMe === null) {
+    if (messages === null) {
       return <Loading background="#202225" />;
     } else {
-      const allMessages = [...messagesFromMe, ...messagesSentToMe];
-
       return (
         <div id="ChatWindow">
-          {allMessages
-            .sort((a, b) => {
-              return new Date(a.date) - new Date(b.date);
-            })
-            .map((message, i) => {
-              if (message.from === user.id) {
-                return (
-                  <div className="message message-from-me" key={i}>
-                    <span className="date">
-                      <Moment format="h:mm A">{message.date}</Moment>
+          <div className="messageList">
+            {messages
+              .sort((a, b) => {
+                return new Date(a.date) - new Date(b.date);
+              })
+              .map((message, i) => {
+                if (message.from === user.id) {
+                  return (
+                    <span className="message message-from-me" key={i}>
+                      <span className="date">
+                        <Moment format="h:mm A">{message.date}</Moment>
+                      </span>
+                      <span className="text">{message.message}</span>
                     </span>
-                    <span className="text">{message.message}</span>
-                  </div>
-                );
-              } else {
-                return (
-                  <div className="message message-sent-to-me" key={i}>
-                    <span className="text">{message.message}</span>
-                    <span className="date">
-                      <Moment format="h:mm A">{message.date}</Moment>
+                  );
+                } else {
+                  return (
+                    <span className="message message-sent-to-me" key={i}>
+                      <span className="text">{message.message}</span>
+                      <span className="date">
+                        <Moment format="h:mm A">{message.date}</Moment>
+                      </span>
                     </span>
-                  </div>
-                );
-              }
-            })}
+                  );
+                }
+              })}
+          </div>
+          <div
+            style={{ float: 'left', clear: 'both' }}
+            ref={el => {
+              this.messagesEnd = el;
+            }}
+          />
         </div>
       );
     }
@@ -85,7 +101,8 @@ class ChatWindow extends Component {
 
 ChatWindow.propTypes = {
   chat: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  getMessages: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -95,5 +112,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  null
+  { getMessages }
 )(ChatWindow);

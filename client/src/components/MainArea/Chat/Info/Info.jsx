@@ -23,7 +23,13 @@ class Info extends Component {
     return (
       <div id="Info">
         <div className="avatar">
-          <img src={userById.avatar} alt="A" />
+          {/* <img src={userById.avatar} alt="A" /> */}
+          <img
+            src={`https://ui-avatars.com/api?name=${userById.firstName}+${
+              userById.lastName
+            }&background=2b2c33&color=0078d4&size=128&rounded=true&font-size=0.33`}
+            alt="Avatar"
+          />
         </div>
         <div className="info">
           <div className="full-name">{`${userById.firstName} ${

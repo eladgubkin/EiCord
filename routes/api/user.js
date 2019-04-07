@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const gravatar = require('gravatar');
+// const gravatar = require('gravatar');
+const request = require('request');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
@@ -25,7 +26,7 @@ router.post('/register', (req, res) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
-  // const tag = Math.floor(1000 + Math.random() * 9000);
+
   const email = req.body.email.toLowerCase();
 
   User.findOne({

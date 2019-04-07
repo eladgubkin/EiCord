@@ -66,6 +66,7 @@ class Friends extends Component {
     const { friendships, loading } = this.props.friendships;
     const { friends } = this.props.user;
     const { currentTab } = this.state;
+    const { socket } = this.props.chat;
 
     if (friendships === null || friends === null || loading) {
       return <Loading background="#23262c" />;
@@ -75,28 +76,25 @@ class Friends extends Component {
           <div className="top">
             <div className="nav">
               <div
-                className={currentTab === 'AddFriend' ? 'active' : ''}
+                className={`${currentTab === 'AddFriend' ? 'active' : ''}`}
                 onClick={() => this.changeTab('AddFriend')}
               >
-                <span>
-                  <i className="fas fa-user-plus" />
-                </span>
+                <i className="fas fa-user-plus" />
+                <span>Add a friend</span>
               </div>
               <div
-                className={currentTab === 'Friends' ? 'active' : ''}
+                className={`${currentTab === 'Friends' ? 'active' : ''}`}
                 onClick={() => this.changeTab('Friends')}
               >
-                <span>
-                  <i className="fas fa-user-friends" />
-                </span>
+                <i className="fas fa-user-friends" />
+                <span>All friends</span>
               </div>
               <div
-                className={currentTab === 'Pending' ? 'active' : ''}
+                className={`${currentTab === 'Pending' ? 'active' : ''}`}
                 onClick={() => this.changeTab('Pending')}
               >
-                <span>
-                  <i className="fas fa-user-clock" />
-                </span>
+                <i className="fas fa-user-clock" />
+                <span>Pending friends</span>
               </div>
             </div>
           </div>
@@ -117,10 +115,18 @@ class Friends extends Component {
                         <div
                           className="user"
                           key={i}
-                          onClick={() => this.props.chatWithUser(friend._id)}
+                          onClick={() => this.props.chatWithUser(friend._id, socket)}
                         >
                           <span className="avatar">
-                            <img src={friend.avatar} alt="Avatar" />
+                            {/* <img src={friend.avatar} alt="Avatar" /> */}
+                            <img
+                              src={`https://ui-avatars.com/api?name=${
+                                friend.firstName
+                              }+${
+                                friend.lastName
+                              }&background=2b2c33&color=0078d4&size=128&rounded=true&font-size=0.33`}
+                              alt="Avatar"
+                            />
                           </span>
                           <div className="info">
                             <span className="full-name">
@@ -128,11 +134,6 @@ class Friends extends Component {
                             </span>
                             <span className="email">{friend.email}</span>
                           </div>
-                          {/* <div className="icons">
-                        <i className="fas fa-phone" />
-                        <i className="fas fa-video" />
-                        <i className="fas fa-comment" />
-                      </div> */}
                         </div>
                       );
                     })}
@@ -169,7 +170,8 @@ Friends.propTypes = {
 
 const mapStateToProps = state => ({
   friendships: state.friendships,
-  user: state.user
+  user: state.user,
+  chat: state.chat
 });
 
 export default connect(
